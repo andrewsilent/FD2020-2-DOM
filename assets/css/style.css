@@ -1,0 +1,94 @@
+:root {
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* .imagePlaceholder:empty::after,
+.cardName:empty::after {
+  content: 'Unknown';
+} */
+
+.container {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  max-width: 300px;
+  margin: 15px;
+}
+
+.cardImgWrapper {
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  background-color: #999;
+  color: #FFF;
+  text-align: center;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImgWrapper:empty::after,
+.cardImgWrapper .img:empty::after  {
+  content: 'Unknown';
+}
+
+.cardImgWrapper .img {
+  width: inherit;
+  object-fit: contain;
+}
+
+.cardDescription {
+  margin-top: 15px;
+}
+
+.cardDescription .title {
+  font: 400 1.25rem/1.25 Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+.cardDescription .subtitle {
+  font: 400 0.85rem/1.25 Arial, Helvetica, sans-serif;
+  color: #E84545;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.cardDescription .desctription {
+  margin-top: 15px;
+  font: 400 0.9rem/1.5 Arial, Helvetica, sans-serif;
+  color: #666;
+}
+
+.cardSocial {
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.cardSocial .link {
+  padding: 15px;
+  margin: 5px;
+  border: 1px solid #999;
+  display: block;
+  cursor: pointer;
+}
+
+.cardSocial .link .icon {
+  width: 20px;
+  height: 20px;
+}

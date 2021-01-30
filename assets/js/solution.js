@@ -1,27 +1,45 @@
 'use strict';
 
-new URL('https://www.facebook.com/DwayneJohnson'); // {hostname}
-new Map().set('www.facebook.com', 'src to fb icon'); // key - hostname
-/**
- *
- * @param {string} type
- * @param {object} options
- * @param {string[]} options.classNames
- * @param {function} options.onClick
- * @param {HTMLElement[]} children
- */
-function createElement(type, { classNames, textContent, src, href }, children) {
+window.onload = renderHTML;
+
+function renderHTML() {
+  const cards = document.querySelector('.cards');
+  responseData
+    .sort((prev, next) => prev.id - next.id)
+    .map((element) => {
+      cards.append(createElement('article', { classNames: ['card'] },
+        [createElement('div', { classNames: ['cardImgWrapper'] },
+          [imgErrorHandler(createElement('img', { classNames: ['img'], attributes: { 'src': element.profilePicture, 'alt': getFullName(element) } }))]
+        ),
+        createElement('div', { classNames: ['cardDescription'] },
+          [createElement('h3', { classNames: ['title'], textContent: getFullName(element) }),
+          createElement('h4', { classNames: ['subtitle'], textContent: element.profession }),
+          createElement('p', { classNames: ['desctription'], textContent: element.description })]
+        ),
+        createElement('div', { classNames: ['cardSocial'] },
+          element.contacts
+            .map((link) => linkToUrl(link))
+            .sort()
+            .map((url) => {
+              return createElement('a', { classNames: ['link'], attributes: { 'href': url.href } },
+                [createElement('img', { classNames: ['icon'], attributes: { 'src': getSocialIcon(url.hostname), 'alt': url.href } })]
+              )
+            })
+        )]
+      ))
+    });
+}
+
+function createElement(type, { classNames, attributes, textContent }, children) {
   const elem = document.createElement(type);
   elem.classList.add(...classNames);
+  if (attributes) {
+    for (const [attrName, attrValue] of Object.entries(attributes)) {
+      elem.setAttribute(attrName, attrValue);
+    }
+  }
   if (textContent) {
-    elem.append(document.createTextNode(textContent));
-  }
-  if (src) {
-    elem.setAttribute('src', src);
-  }
-  if (href) {
-    elem.setAttribute('href', href);
-    console.log(href);
+    elem.append(textContent);
   }
   if (children) {
     elem.append(...children);
@@ -29,29 +47,37 @@ function createElement(type, { classNames, textContent, src, href }, children) {
   return elem;
 }
 
-const data = responseData;
-const cards = document.querySelector('.cards');
-data.map((element) => {
-  console.log(element);
-  cards.append(createElement('article', { classNames: ['card'] },
-    [createElement('div', { classNames: ['cardImgWrapper'] },
-      [createElement('img', { classNames: ['img'], src: element.profilePicture })]
-    ),
-    createElement('div', { classNames: ['cardDescription'] },
-      [createElement('h3', { classNames: ['title'], textContent: getFullName(element) }),
-      createElement('h4', { classNames: ['subtitle'], textContent: element.profession }),
-      createElement('p', { classNames: ['desctription'], textContent: element.description })]
-    ),
-    createElement('div', { classNames: ['cardSocial'] },
-      element.contacts.map((link) => {
-        return createElement('a', { classNames: ['link'], href: link },
-          [createElement('img', { classNames: ['icon'], src: "./assets/img/facebook.svg" })]
-        )
-      })
-    )]
-  ))
-});
+function imgErrorHandler(object) {
+  object.onerror = () => {
+    object.remove();
+    throw new Error('Image download fail => image has been deleted from HTML');
+  }
+  return object;
+}
 
 function getFullName({ firstName, lastName }) {
-  return `${firstName} ${lastName}`;
+  if (firstName && lastName) {
+    return `${firstName} ${lastName}`;
+  } else {
+    return 'No name';
+  }
+}
+
+function linkToUrl(link) {
+  const url = new URL(link);
+  url.hostname.startsWith('www.')
+    ? url.hostname
+    : url.hostname = 'www.' + url.hostname;
+  return url;
+}
+
+function getSocialIcon(hostname) {
+  switch (hostname) {
+    case 'www.facebook.com':
+      return './assets/img/facebook.svg';
+    case 'www.instagram.com':
+      return './assets/img/instagram.svg';
+    case 'www.twitter.com':
+      return './assets/img/twitter.svg';
+  }
 }

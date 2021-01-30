@@ -4,7 +4,7 @@ const responseData = [
     firstName: 'Jason',
     lastName: 'Statham',
     profession: 'Actor, TV Star',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, quia officia. Labore sed laboriosam accusamus.',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt sit id reiciendis accusamus accusantium maxime debitis quia ex. Fugit, voluptate.',
     profilePicture:
       'https://i.pinimg.com/orignals/24/f5/f8/24f5f8ef9f8af9c7e795ff0ba15f6881.jpg',
     contacts: [
@@ -18,7 +18,7 @@ const responseData = [
     firstName: 'Dwayne',
     lastName: 'Johnson',
     profession: 'Actor, TV Star',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores, quia officia. Labore sed laboriosam accusamus.',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt sit id reiciendis accusamus accusantium maxime debitis quia ex. Fugit, voluptate.',
     profilePicture:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Dwayne_Johnson_2%2C_2013.jpg/800px-Dwayne_Johnson_2%2C_2013.jpg',
     contacts: [

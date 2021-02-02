@@ -28,6 +28,8 @@ function renderHTML() {
         )]
       ))
     });
+  document.querySelectorAll('.card').forEach(item => item.addEventListener('click', cardSelect));
+
 }
 
 function createElement(type, { classNames, attributes, textContent }, children) {
@@ -80,4 +82,13 @@ function getSocialIcon(hostname) {
     case 'www.twitter.com':
       return './assets/img/twitter.svg';
   }
+}
+
+function cardSelect(event) {
+  event.target.classList.toggle('selected');
+  cardsUnselect(event.target);
+}
+
+function cardsUnselect(element) {
+  [...document.querySelectorAll('.card')].filter(e=>e!=element).forEach(card=>card.classList.remove('selected'));
 }

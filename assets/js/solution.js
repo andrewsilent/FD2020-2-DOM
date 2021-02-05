@@ -91,3 +91,55 @@ function cardSelect(event) {
 function cardsUnselect(element) {
   [...document.querySelectorAll('.card')].filter(e => e != element).forEach(card => card.classList.remove('selected'));
 }
+
+// function myFetch(file = responseData) {
+//   const response = JSON.stringify(file);
+//   return Promise.resolve(response)
+// }
+
+// const cards = document.querySelector('.cards');
+
+// myFetch().then((response) => {
+//   const data = JSON.parse(response);
+//   data
+//     .sort((prev, next) => prev.id - next.id)
+//     .map((element) => {
+//       cards.append(createElement('article', { classNames: ['card'] },
+//         [createElement('div', { classNames: ['cardImgWrapper'] },
+//           [tryToLoadImage(element.profilePicture)]
+//         ),
+//         createElement('div', { classNames: ['cardDescription'] },
+//           [createElement('h3', { classNames: ['title'], textContent: getFullName(element) }),
+//           createElement('h4', { classNames: ['subtitle'], textContent: element.profession }),
+//           createElement('p', { classNames: ['desctription'], textContent: element.description })]
+//         ),
+//         createElement('div', { classNames: ['cardSocial'] },
+//           element.contacts
+//             .map((link) => linkToUrl(link))
+//             .sort()
+//             .map((url) => {
+//               return createElement('a', { classNames: ['link'], attributes: { 'href': url.href } },
+//                 [createElement('img', { classNames: ['icon'], attributes: { 'src': getSocialIcon(url.hostname), 'alt': url.href } })]
+//               )
+//             })
+//         )]
+//       ))
+//     })
+// })
+
+// function tryToLoadImage(src) {
+//   console.log(src);
+//   fetch(src)
+//   .then((response) => {
+//     console.log(response);
+//     if (response.status === 200) {
+//       return resolve(response.blob());
+//     } else return reject(response);
+//   })
+//     .then((blob) => {
+//       console.log('blobblobblob');
+
+//       console.log(blob);
+//       createElement('img', { classNames: ['img'], attributes: { 'src': element.profilePicture, 'alt': getFullName(element) } })
+//     })
+// }
